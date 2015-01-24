@@ -22,7 +22,7 @@ class HomeView(TemplateView):
 
         # Setting the stories in context by page
         stories = Story.objects.all().order_by('-created')
-        paginator = Paginator(stories, 10)
+        paginator = Paginator(stories, 20)
         page = self.request.GET.get('page')
         try:
             stories = paginator.page(page)
