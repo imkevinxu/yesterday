@@ -9,7 +9,7 @@ import os
 
 ########## HOST CONFIGURATION
 # https://docs.djangoproject.com/en/1.5/releases/1.5/#allowed-hosts-required-in-production
-ALLOWED_HOSTS = [PROJECT_DOMAIN, '.herokuapp.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = [PROJECT_DOMAIN, 'whatdyoudoyesterday.herokuapp.com', 'localhost', '127.0.0.1']
 ########## END HOST CONFIGURATION
 
 

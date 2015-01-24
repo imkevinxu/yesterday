@@ -23,13 +23,13 @@ PROJECT_ROOT = dirname(CONFIG_ROOT)
 DJANGO_ROOT = dirname(PROJECT_ROOT)
 
 # Project name:
-PROJECT_NAME = basename(PROJECT_ROOT).capitalize()
+PROJECT_NAME = "What'd You Do Yesterday?"
 
 # Project folder:
 PROJECT_FOLDER = basename(PROJECT_ROOT)
 
 # Project domain:
-PROJECT_DOMAIN = '%s.com' % PROJECT_NAME.lower()
+PROJECT_DOMAIN = 'whatdyoudoyesterday.com'
 
 # Add our project to our pythonpath, this way we don't need to type our project
 # name in our dotted import paths:
