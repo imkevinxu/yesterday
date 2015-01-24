@@ -46,7 +46,8 @@
         <form class="story-form" action="{% url 'core:home' %}" method="post">
             {% csrf_token %}
             <div class="form-group">
-              <label for="id_story">Type your story here</label>
+              <label for="id_story">Write your story here</label>
+              <p>Stories like <a href="http://whatdyoudoyesterday.com/story/cc47706c-23e8-4d0c-9ab3-9294868bbaa6/">this</a> are appreciated. Spam will be deleted.</p>
 <textarea cols="40" id="id_story" name="story" rows="10" class="form-control">
 </textarea>
             </div>
