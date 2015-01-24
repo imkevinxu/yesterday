@@ -51,7 +51,7 @@
 
           {% for story in stories %}
               <div class="story">
-                {{ story.story|linebreaks }}
+                {{ story.story|linebreaks|urlize }}
               </div>
 
               <div class="story-time">
