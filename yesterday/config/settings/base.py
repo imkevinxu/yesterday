@@ -23,7 +23,7 @@ PROJECT_ROOT = dirname(CONFIG_ROOT)
 DJANGO_ROOT = dirname(PROJECT_ROOT)
 
 # Project name:
-PROJECT_NAME = "What'd You Do Yesterday?"
+PROJECT_NAME = 'yesterday'
 
 # Project folder:
 PROJECT_FOLDER = basename(PROJECT_ROOT)
@@ -80,6 +80,7 @@ THIRD_PARTY_APPS = (
 
 PROJECT_APPS = (
     'accounts',
+    'apps.stories',
 )
 
 EXTENSION_APPS = (

@@ -3,12 +3,10 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>{% block title %}yesterday{% endblock title %}</title>
+    <title>{% block title %}What'd You Do Yesterday{% endblock title %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <link rel="shortcut icon" type="image/x-icon" href="{% url 'favicon.ico' %}" />
+    <meta name="description" content="Stories of what people did yesterday in hour-by-hour detail">
+    <meta name="author" content="stories, people, yesterday">
 
     {% stylesheet 'master' %}
     {% block extra_css %}{% endblock extra_css %}
@@ -22,7 +20,10 @@
   <body>
     <div class="container">
       {% block header %}
-        <h1>{% block page_title %}Hello World{% endblock page_title %}</h1>
+
+        <h1><a href="{% url 'core:home' %}" class="no-style">What'd You Do Yesterday?</a></h1>
+        <h2>Stories of what people did yesterday</h2>
+
       {% endblock header %}
 
       {% block messages %}
@@ -30,6 +31,59 @@
       {% endblock messages %}
 
       {% block content %}
+
+        <form class="story-form" action="{% url 'core:home' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+              <label for="id_story">Type your story here</label>
+<textarea cols="40" id="id_story" name="story" rows="10" class="form-control">
+</textarea>
+            </div>
+            <input type="submit" class="btn btn-default btn-lg btn-block" value="Submit" />
+        </form>
+
+        <div class="stories">
+          {% if stories|length > 1 %}
+            <h1>Recent Stories</h1>
+          {% else %}
+            <h1>Story</h1>
+          {% endif %}
+
+          {% for story in stories %}
+              <div class="story">
+                {{ story.story|linebreaks }}
+              </div>
+
+              <div class="story-time">
+                <a href="{% url 'core:story' story.uuid %}" class="no-style">Posted {{ story.created }}</a>
+              </div>
+
+              <hr/>
+          {% endfor %}
+        </div>
+
+        {% if stories|length > 1 %}
+          <div class="pagination">
+            <span class="step-links">
+              {% if stories.has_previous %}
+                <a href="?page={{ stories.previous_page_number }}">&laquo; Previous</a>
+              {% endif %}
+
+              <span class="current">
+                Page {{ stories.number }} of {{ stories.paginator.num_pages }}
+              </span>
+
+              {% if stories.has_next %}
+                <a href="?page={{ stories.next_page_number }}">Next &raquo;</a>
+              {% endif %}
+            </span>
+          </div>
+        {% endif %}
+
+        <footer>
+          Made with <3 by <a href="https://twitter.com/imkevinxu" target="_blank">Kevin Xu</a>, Founder of <a href="https://imhomeapp.com/" target="_blank">imHome</a>
+        </footer>
+
 
       {% endblock content %}
     </div>
