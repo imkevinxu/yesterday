@@ -78,8 +78,8 @@
           <div class="pagination">
             <span class="step-links">
               {% if stories.has_previous %}
-                <a href="{% url 'core:home' %}">< First</a>
-                <a href="?page={{ stories.previous_page_number }}">&laquo; Previous</a>
+                <a href="{% url 'core:home' %}">< First</a>&nbsp;
+                <a href="?page={{ stories.previous_page_number }}">&laquo; Previous</a>&nbsp;
               {% endif %}
 
               <span class="current">
@@ -87,8 +87,8 @@
               </span>
 
               {% if stories.has_next %}
-                <a href="?page={{ stories.next_page_number }}">Next ></a>
-                <a href="?page={{ stories.paginator.num_pages }}">Last &raquo;</a>
+                &nbsp;<a href="?page={{ stories.next_page_number }}">Next ></a>
+                &nbsp;<a href="?page={{ stories.paginator.num_pages }}">Last &raquo;</a>
               {% endif %}
             </span>
           </div>
