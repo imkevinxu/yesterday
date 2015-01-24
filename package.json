@@ -1,0 +1,43 @@
+{
+  "name": "yesterday",
+  "version": "0.0.1",
+  "description": "Using Grunt to automate linting, compiling, and watching frontend code",
+  "author": "Kevin Xu",
+  "homepage": "https://yesterday.com/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imkevinxu/django-kevin"
+  },
+  "main": "Gruntfile.coffee",
+  "dependencies": {
+    "coffee-script": "^1.8.0",
+    "grunt": "~0.4.5",
+    "grunt-autoprefixer": "^2.0.0",
+    "grunt-coffeelint": "0.0.13",
+    "grunt-concurrent": "^1.0.0",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-coffee": "^0.12.0",
+    "grunt-contrib-connect": "^0.9.0",
+    "grunt-contrib-copy": "^0.7.0",
+    "grunt-contrib-imagemin": "^0.9.1",
+    "grunt-contrib-jasmine": "^0.8.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-newer": "^1.0.0",
+    "grunt-notify": "^0.4.1",
+    "grunt-open": "^0.2.3",
+    "grunt-sass": "^0.17.0",
+    "grunt-scss-lint": "^0.3.3",
+    "grunt-shell": "^1.1.1",
+    "grunt-template-jasmine-istanbul": "^0.3.0",
+    "grunt-text-replace": "^0.4.0",
+    "load-grunt-config": "^0.16.0",
+    "time-grunt": "^1.0.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": "0.10.x",
+    "npm": "2.x"
+  },
+  "private": true,
+  "scripts": {}
+}

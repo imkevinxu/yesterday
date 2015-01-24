@@ -1,0 +1,74 @@
+# Project-specific #
+####################
+.env*
+.foreman
+assets
+tmp
+tests/*
+_SpecRunner.html
+
+# Python and Django #
+#####################
+staticfiles
+public
+build
+compressed
+*.py[co]
+*.egg*
+.coverage
+
+# Node.js #
+###########
+node_modules
+.grunt
+
+# Text editors #
+################
+.svn
+*~
+*.sw
+*.swp
+*.pyc
+*.tmproj
+*.sublime-project
+*.sublime-workspace
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages #
+############
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.db
+*.rdb
+*.log
+*.log.*
+*.sql
+*.sqlite
+*.sqlite3
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

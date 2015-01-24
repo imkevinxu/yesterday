@@ -1,0 +1,28 @@
+# See more documentation in /docs/libraries.md
+
+# Importing from base.txt
+-r base.txt
+
+# Faster collectstatic
+# https://github.com/antonagestam/collectfast
+Collectfast==0.2.1
+
+# Python interface to AWS
+# https://boto.readthedocs.org/en/latest/
+boto==2.35.2
+
+# Allows Django to use database URLs for Heroku
+# https://github.com/kennethreitz/dj-database-url
+dj-database-url==0.3.0
+
+# Django security best practices
+# http://django-secure.readthedocs.org/en/v0.1.2/
+django-secure==1.0.1
+
+# Custom storage backends; using S3
+# http://django-storages.readthedocs.org/en/latest/index.html
+django-storages==1.1.8
+
+# Production WSGI server with workers
+# https://github.com/benoitc/gunicorn
+gunicorn==19.1.1

@@ -1,0 +1,93 @@
+# See more documentation in /docs/libraries.md
+
+# Current framework
+# https://docs.djangoproject.com/en/1.7/
+Django==1.7.3
+
+# Advanced python interpreter/REPL
+# http://docs.bpython-interpreter.org/
+bpython==0.13.2
+
+# Secure XML parser protected against XML bombs
+# https://bitbucket.org/tiran/defusedxml
+defusedxml==0.4.1
+
+# Serve production static files with Django
+# https://github.com/kennethreitz/dj-static
+dj-static==0.0.6
+
+# Custom User model classes such as `AbstractEmailUser` and `AbstractNamedUser`
+# http://django-authtools.readthedocs.org/en/latest/
+django-authtools==1.0.0
+
+# Lots of custom mixins
+# http://django-braces.readthedocs.org/en/v1.4.0/
+django-braces==1.4.0
+
+# Useful command line extensions (`shell_plus`, `create_command`, `export_emails`)
+# http://django-extensions.readthedocs.org/en/latest/
+django-extensions==1.4.9
+
+# Control of output of form rendering
+# http://django-floppyforms.readthedocs.org/en/latest/
+django-floppyforms==1.3.0
+
+# Useful model mixins and utilities such as `TimeStampedModel` and `Choices`
+# https://django-model-utils.readthedocs.org/en/latest/
+django-model-utils==2.2
+
+# CSS and JS compressor and compiler. Also minifies HTML
+# http://django-pipeline.readthedocs.org/en/latest/
+django-pipeline==1.4.3
+
+# Enables redis cacheing
+# https://django-redis.readthedocs.org/en/latest/
+django-redis==3.8.2
+
+# Django integration for RQ
+# https://github.com/ui/django-rq
+django-rq==0.7.0
+
+# Python task execution in `tasks.py`
+# http://docs.pyinvoke.org/en/latest/
+invoke==0.9.0
+
+# Nifty handlers for the Python standard library’s logging package
+# https://pythonhosted.org/logutils/
+logutils==0.3.3
+
+# Helpers for Python projects like ReadableSqlFilter
+# https://github.com/crccheck/project_runpy
+project-runpy==0.3.1
+
+# PostgreSQL adapter
+# http://pythonhosted.org/psycopg2/
+psycopg2==2.5.4
+
+# Library to identify uploaded file's headers
+# https://github.com/ahupp/python-magic
+python-magic==0.4.6
+
+# World timezone definitions
+# http://pytz.sourceforge.net/
+pytz==2014.10
+
+# HTTP request API
+# http://docs.python-requests.org/en/latest/
+requests==2.5.1
+
+# Job scheduling capabilities to RQ
+# https://github.com/ui/rq-scheduler
+rq-scheduler==0.5.0
+
+# Python 2 and 3 compatibility utilities
+# http://pythonhosted.org/six/
+six==1.9.0
+
+# Serves static and dynamic content
+# https://github.com/lukearno/static
+static==1.1.1
+
+# A slugifier that works in unicode
+# https://github.com/mozilla/unicode-slugify
+unicode-slugify==0.1.3

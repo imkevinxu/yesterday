@@ -1,0 +1,159 @@
+{% extends "admin/base_site.html" %}
+
+{% load url from future %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  <style>
+    .data {
+      display: inline-block;
+      float: left;
+      width: 80%;
+      font-size: 12px;
+      padding-top: 3px;
+    }
+  </style>
+  <link href="{{ STATIC_URL }}admin/css/forms.css" type="text/css" rel="stylesheet">
+  {% endblock %}
+
+{% block breadcrumbs %}
+  <div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">Home</a> &rsaquo;
+    <a href="{% url 'rq_scheduler:jobs' %}">RQ Scheduler</a> &rsaquo;
+    <a href="{% url 'rq_scheduler:job_detail' job.id %}">{{ job.id }}</a>
+  </div>
+  {% endblock %}
+
+{% block content_title %}<h1>Job Info</h1>{% endblock %}
+
+{% block content %}
+
+<div id="content-main">
+
+  <fieldset class="module aligned ">
+
+    <div class="form-row">
+      <div>
+        <label class="required">ID:</label>
+        <div class="data">{{ job.id }}</div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div>
+        <label class="required">Queue:</label>
+        <div class="data">{{ job.origin }}</div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div>
+        <label class="required">Timeout:</label>
+        <div class="data">{{ job.timeout }}</div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div>
+        <label class="required">Result TTL:</label>
+        <div class="data">{{ job.result_ttl }}</div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div>
+        <label class="required">Created:</label>
+        <div class="data">{{ job.created_at }} ({{ job.created_at|timesince }} ago)</div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div>
+        <label class="required">Scheduled:</label>
+        <div class="data">
+          {% if job.scheduled_at %}
+            {{ job.scheduled_at }} (in {{ job.scheduled_at|timeuntil }})
+          {% else %}
+            Queued
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div>
+        <label class="required">Queued:</label>
+        <div class="data">
+          {% if job.enqueued_at %}
+            {{ job.enqueued_at }} (in {{ job.enqueued_at|timeuntil }})
+          {% else %}
+            Not queued yet
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div>
+        <label class="required">Status:</label>
+        <div class="data">{{ job.get_status }}</div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div>
+        <label class="required">Callable:</label>
+        <div class="data">{{ job.func_name }}</div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div>
+        <label class="required">Args:</label>
+        <div class="data">
+          {% if job.args %}
+          <ul>
+            {% for arg in job.args %}
+              <li>{{ arg }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div>
+        <label class="required">Kwargs:</label>
+        <div class="data">
+          {% if job.kwargs %}
+            <ul>
+              {% for key, value in job.kwargs.items %}
+                <li>{{ key }}: {{ value|escape }}</li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div>
+        <label class="required">Exception:</label>
+        <div class="data"><pre>{% if job.exc_info %}{{ job.exc_info|linebreaks }}{% endif %}</pre></div>
+      </div>
+    </div>
+
+  </fieldset>
+
+  <div class="submit-row">
+    <p class="deletelink-box"><a href="{% url 'rq_scheduler:delete_job' job.id %}" class="deletelink">Delete</a></p>
+    <form method="POST" action="{% url 'rq_scheduler:enqueue_job' job.id %}">
+      {% csrf_token %}
+      <input type="submit" value="Enqueue" class="default" name="enqueue">
+    </form>
+  </div>
+
+</div>
+
+{% endblock %}

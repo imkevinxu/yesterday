@@ -1,0 +1,16 @@
+# See more documentation in /docs/libraries.md
+
+# Importing from base.txt
+-r base.txt
+
+# WSGI utility library with powerful debugger
+# http://werkzeug.pocoo.org/
+Werkzeug==0.9.6
+
+# Debug information in a toolbar
+# http://django-debug-toolbar.readthedocs.org/en/1.2/
+django-debug-toolbar==1.2.2
+
+# SSL localhost server
+# https://github.com/teddziuba/django-sslserver
+django-sslserver==0.14

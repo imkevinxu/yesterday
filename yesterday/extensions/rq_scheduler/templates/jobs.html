@@ -1,0 +1,112 @@
+{% extends "admin/base_site.html" %}
+
+{% load admin_static %}
+{% load url from future %}
+
+{% block extrastyle %}
+  {{ block.super }}
+  <link rel="stylesheet" type="text/css" href="{% static "admin/css/changelists.css" %}">
+  {% endblock %}
+
+{% block extrahead %}
+  {{ block.super }}
+  <script type="text/javascript" src="{% static "admin/js/jquery.js" %}"></script>
+  <script type="text/javascript" src="{% static "admin/js/jquery.init.js" %}"></script>
+  <script type="text/javascript" src="{% static "admin/js/actions.js" %}"></script>
+  <script type="text/javascript">
+  (function($) {
+    $(document).ready(function($) {
+      $("tr input.action-select").actions();
+    });
+  })(django.jQuery);
+  </script>
+  {% endblock %}
+
+{% block breadcrumbs %}
+  <div class="breadcrumbs">
+    <a href="{% url 'admin:index' %}">Home</a> &rsaquo;
+    <a href="{% url 'rq_scheduler:jobs' %}">RQ Scheduler</a>
+  </div>
+  {% endblock %}
+
+{% block content_title %}<h1>Scheduled Jobs</h1>{% endblock %}
+
+{% block content %}
+
+<div id="content-main">
+  <ul class="object-tools">
+    <li><a href="{% url 'rq_scheduler:clear_jobs' %}" class="deletelink">Clear Scheduled Jobs</a></li>
+  </ul>
+  <div class="module" id="changelist">
+    <form id="changelist-form" action="{% url 'rq_scheduler:actions' %}" method="post">
+      {% csrf_token %}
+      <div class="actions">
+        <label>Actions:
+          <select name="action">
+            <option value="" selected="selected">---------</option>
+            <option value="enqueue">Enqueue</option>
+            <option value="delete">Delete</option>
+          </select>
+        </label>
+        <button type="submit" class="button" title="Execute selected action" name="index" value="0">Go</button>
+      </div>
+      <div class="results">
+        <table id="result_list">
+          <thead>
+            <tr>
+              <th scope="col" class="action-checkbox-column">
+                <div class="text">
+                  <span><input type="checkbox" id="action-toggle" style="display: inline-block;"></span>
+                </div>
+                <div class="clear"></div>
+              </th>
+              <th><div class="text"><span>ID</span></div></th>
+              <th><div class="text"><span>Created</span></div></th>
+              <th><div class="text"><span>Scheduled</span></div></th>
+              <th><div class="text"><span>Callable</span></div></th>
+              <th><div class="text"><span>Args</span></div></th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for job in jobs %}
+              <tr class="{% cycle 'row1' 'row2' %}">
+                <td class="action-checkbox">
+                  <input class="action-select" name="_selected_action" type="checkbox" value="{{ job.id }}">
+                </td>
+                <th>
+                  <a href="{% url 'rq_scheduler:job_detail' job.id %}">
+                    {{ job.id }}
+                  </a>
+                </th>
+                <td>{{ job.created_at }}</td>
+                <td>{{ job.scheduled_at }}</td>
+                <td>{{ job.func_name }}</td>
+                <td>
+                  {% if job.args %}
+                    {% for arg in job.args %}
+                      <li>{{ arg }}</li>
+                    {% endfor %}
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <p class="paginator">
+        {% for p in page_range %}
+          {% if p == page %}
+            <span class="this-page">{{ p }}</span>
+          {% elif forloop.last %}
+            <a href="?page={{ p }}" class="end">{{ p }}</a>
+          {% else %}
+            <a href="?page={{ p }}">{{ p }}</a>
+          {% endif %}
+        {% endfor %}
+        {{ num_jobs }} jobs
+      </p>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

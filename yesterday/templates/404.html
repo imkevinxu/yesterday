@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Page Not Found{% endblock title %}
+
+{% block page_title %}{% endblock page_title %}
+
+{% block content %}
+
+<div class="404">
+  <div class="glitch" data-text="Page Not Found">Page Not Found</div>
+
+  <p>This is not the page you were looking for. Go back to the <a href="{% url 'core:home' %}">homepage</a>.</p>
+</div>
+
+{% endblock content %}

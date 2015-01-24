@@ -1,0 +1,61 @@
+# Aliases for registered tasks
+# https://github.com/firstandthird/load-grunt-config#aliases
+
+lint_stylesheets:
+  - 'scsslint'
+
+lint_scripts:
+  - 'coffeelint:scripts'
+
+lint:
+  - 'lint_stylesheets'
+  - 'lint_scripts'
+
+build_stylesheets:
+  - 'clean:stylesheets'
+  - 'sass'
+  - 'autoprefixer'
+  - 'replace:stylesheets'
+
+build_scripts:
+  - 'clean:scripts'
+  - 'coffee:scripts'
+
+build_images:
+  - 'clean:images'
+  - 'imagemin'
+
+build:
+  - 'build_stylesheets'
+  - 'build_scripts'
+  - 'build_images'
+
+heroku:
+  - 'build'
+
+dev:
+  - 'lint'
+  - 'build'
+  - 'notify:compile'
+  - 'watch'
+
+lint_jasmine:
+  - 'coffeelint:jasmine'
+
+build_jasmine:
+  - 'copy:jasmine'
+  - 'coffee'
+  - 'jasmine'
+  - 'copy:coverage'
+  - 'copy:specRunner'
+  - 'clean:specRunner'
+  - 'replace:coverage'
+  - 'replace:specRunner'
+
+test:
+  - 'shell:django'
+  - 'clean:jasmine'
+  - 'lint_jasmine'
+  - 'build_jasmine'
+  - 'notify:test'
+  - 'concurrent:tests'

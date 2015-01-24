@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+
+NODE_VERSION=$(curl --silent --get https://semver.io/node/stable)
+NODE_BASENAME=node-v${NODE_VERSION}-linux-x64
+NODE_ARCHIVE="http://nodejs.org/dist/v${NODE_VERSION}/${NODE_BASENAME}.tar.gz"
+
+echo "Downloading and installing node-$NODE_VERSION"
+
+tempdir="$( mktemp -t node_XXXX )"
+rm -rf $tempdir
+mkdir -p $tempdir
+
+pushd $tempdir &> /dev/null
+curl -s -L -o tmp-nodejs.tar.gz $NODE_ARCHIVE
+tar -zxvf tmp-nodejs.tar.gz > /dev/null
+rm tmp-nodejs.tar.gz
+popd &> /dev/null
+
+mkdir -v -p $BUILD_DIR/.heroku/vendor &> /dev/null
+pushd $BUILD_DIR/.heroku/vendor &> /dev/null
+rm -rf node
+mv $tempdir/$NODE_BASENAME node
+popd &> /dev/null
+
+ln -sf ../../vendor/node/bin/node .heroku/python/bin/node
+ln -sf ../../vendor/node/bin/node-waf .heroku/python/bin/node-waf
+ln -sf ../../vendor/node/bin/npm .heroku/python/bin/npm

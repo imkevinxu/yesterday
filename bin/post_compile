@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -eo pipefail
+source bin/common.sh
+
+if ! type node &> /dev/null; then
+    status "Installing node.js"
+    chmod +x bin/install_nodejs
+    bin/install_nodejs 2>&1 | indent
+    echo
+fi
+
+if ! type yuglify &> /dev/null; then
+    status "Installing yuglify"
+    npm install -g yuglify@0.1.4 2>&1 | indent
+    echo
+fi
+
+status "Post-compile done"
+echo
